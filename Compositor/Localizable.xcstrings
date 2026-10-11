@@ -13816,6 +13816,83 @@
           }
         }
       }
+    },
+    "Transparent canvas": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "透明画布"
+          }
+        }
+      }
+    },
+    "White canvas": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "白色画布"
+          }
+        }
+      }
+    },
+    "Black canvas": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "黑色画布"
+          }
+        }
+      }
+    },
+    "Millimeters": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫米"
+          }
+        }
+      }
+    },
+    "Start see-through, or with a white or black Background layer. Click to switch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择透明画布，或以白色/黑色背景图层开始。点击切换。"
+          }
+        }
+      }
+    },
+    "Resolution: 72 for screens, 300 for print. Click to switch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分辨率：屏幕通常用 72 DPI，打印通常用 300 DPI。点击切换。"
+          }
+        }
+      }
+    },
+    "Enter a size up to %@ pixels at this DPI.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按当前 DPI 计算，尺寸不能超过 %@ 像素。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
