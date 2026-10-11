@@ -1,0 +1,21 @@
+name: Upgrade v1.4.9 Brand Audit
+on:
+  push:
+    branches: ['upgrade/v1.4.9-aips.1']
+    paths: ['.github/workflows/upgrade-149-brand.yml']
+permissions:
+  contents: read
+jobs:
+  brand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find residual public Compositor branding
+        shell: bash
+        run: |
+          set -euo pipefail
+          (grep -RIn --include='*.swift' --include='*.plist' --include='*.xcstrings' -E '"[^"]*Compositor[^"]*"|>Compositor[^<]*<' Compositor Config || true) | tee brand-audit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: upgrade-149-brand-audit
+          path: brand-audit.txt
