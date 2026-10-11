@@ -38,8 +38,9 @@ final class ProjectWorkspace {
     /// number them. Counting up for ever, closing the last tab made Untitled 2, then 3, and on.
     private var freeUntitledName: String {
         let taken = Set(tabs.map(\.title))
-        guard taken.contains("Untitled") else { return "Untitled" }
-        return (2...).lazy.map { "Untitled \($0)" }.first { !taken.contains($0) }!
+        let base = localized("Untitled")
+        guard taken.contains(base) else { return base }
+        return (2...).lazy.map { "\(base) \($0)" }.first { !taken.contains($0) }!
     }
     /// Whether a tab can close: not the only one while it's empty, the blank start it would only be replaced with.
     func canClose(_ tab: ProjectTab) -> Bool {
