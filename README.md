@@ -3,11 +3,11 @@
 **Compositor-ZH** 是基于 Compositor 的简体中文本地化分支，由 **Ai巴拉巴拉 · aibalabala.com** 维护。
 当前项目只做两件事：跟随官方 Compositor 同步更新，以及简体中文本地化；不新增独立编辑功能。
 
-- **当前源码基线：** `1.4.9-zh.1`（基于 Compositor v1.4.9）
+- **当前源码基线：** `1.4.9-zh.2`（基于 Compositor v1.4.9）
 - **上游基线：** Compositor `v1.4.9`
 - **变更记录：** [CHANGELOG.md](CHANGELOG.md)
 - **上游同步规则：** [UPSTREAM_SYNC.md](UPSTREAM_SYNC.md)
-- **新版安装包：** [Compositor-ZH 1.4.9-zh.1 DMG](https://github.com/aibalabala/Compositor-ZH/releases/download/v1.4.9-zh.1/Compositor-ZH-1.4.9-zh.1-macOS-universal2-adhoc.dmg)
+- **新版安装包：** [Compositor-ZH 1.4.9-zh.2 DMG](https://github.com/aibalabala/Compositor-ZH/releases/download/v1.4.9-zh.2/Compositor-ZH-1.4.9-zh.2-macOS-universal2-adhoc.dmg)
 
 > Original project: **Compositor** by Robbie Tilton. This is an independent community localization fork, not an official Compositor release. The original MIT License and attribution are retained.
 
