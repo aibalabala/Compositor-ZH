@@ -4,7 +4,7 @@ on:
     branches: ['upgrade/v1.4.9-aips.1']
     paths: ['.github/workflows/upgrade-149.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   diagnose:
     runs-on: ubuntu-latest
@@ -44,3 +44,20 @@ jobs:
           name: upgrade-149-merge-diagnostic
           path: report/
           retention-days: 14
+
+      - name: Apply reviewed conflict resolutions and commit candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/upgrade_149_resolve.py
+          rm -rf report
+          git add -A
+          if [ -n "$(git diff --name-only --diff-filter=U)" ]; then
+            echo "::error::Unresolved merge conflicts remain"
+            exit 1
+          fi
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sync Compositor v1.4.9 into Aips candidate"
+          git push origin HEAD:upgrade/v1.4.9-aips.1
