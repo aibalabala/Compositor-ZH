@@ -7,7 +7,7 @@ nonisolated enum PSDError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .truncated: localized("The Photoshop file could not be read. It may be damaged or incomplete.")
-        case .unsupportedVersion: localized("This Photoshop file uses a format version Aips can’t read.")
+        case .unsupportedVersion: localized("This Photoshop file uses a format version Compositor-ZH can’t read.")
         case .unsupportedColorMode: localized("Only 8-bit RGB Photoshop files can be imported.")
         case .unsupportedDepth: localized("Only 8-bit RGB Photoshop files can be imported.")
         case .unsupportedCompression: localized("This Photoshop file uses a layer compression method that isn’t supported.")
