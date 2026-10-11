@@ -69,40 +69,6 @@
         }
       }
     },
-    "Compositor Layer": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compositor Layer"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compositor 图层"
-          }
-        }
-      }
-    },
-    "Compositor Project": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compositor Project"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compositor 项目"
-          }
-        }
-      }
-    },
     "Images": {
       "extractionState": "manual",
       "localizations": {
@@ -116,6 +82,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "图像"
+          }
+        }
+      }
+    },
+    "Aips Layer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aips Layer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aips 图层"
+          }
+        }
+      }
+    },
+    "Aips Project": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aips Project"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aips 项目"
           }
         }
       }
