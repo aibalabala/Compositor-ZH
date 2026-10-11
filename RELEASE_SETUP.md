@@ -1,10 +1,10 @@
-# Aips 正式签名与公证发布配置
+# Compositor-ZH 正式签名与公证发布配置
 
 仓库已经包含 `.github/workflows/notarized-release.yml`。
 
 正式发布流程：
 
-1. macOS 26 / Xcode 26.6 构建 Release 版 `Aips.app`
+1. macOS 26 / Xcode 26.6 构建 Release 版 `Compositor-ZH.app`
 2. 使用 Apple **Developer ID Application** 证书签名
 3. 启用 Hardened Runtime
 4. 提交 Apple Notarization
