@@ -146,7 +146,7 @@ def main() -> int:
             covered_added.append((value, zh))
 
     out = []
-    out.append("# Aips localization audit")
+    out.append("# Compositor-ZH localization audit")
     out.append("")
     out.append(f"- Catalog: `{args.catalog}`")
     out.append(f"- Catalog keys: **{len(strings)}**")
