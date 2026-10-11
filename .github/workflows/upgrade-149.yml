@@ -1,0 +1,45 @@
+name: Upgrade 1.4.9 Merge Diagnosis
+on:
+  push:
+    branches: ['upgrade/v1.4.9-aips.1']
+    paths: ['.github/workflows/upgrade-149.yml']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch official releases
+        run: |
+          set -euo pipefail
+          git remote add upstream https://github.com/robbietilton/Compositor.git
+          git fetch --no-tags upstream refs/tags/v1.4.5:refs/tags/base-145 refs/tags/v1.4.9:refs/tags/target-149
+      - name: Three-way merge and package conflicts
+        shell: bash
+        run: |
+          set -uo pipefail
+          git diff --binary base-145 target-149 > /tmp/upgrade.patch
+          git apply --3way --index /tmp/upgrade.patch 2>&1 | tee /tmp/merge.log
+          result=${PIPESTATUS[0]}
+          mkdir -p report
+          printf 'merge_exit=%s\n' "$result" > report/status.txt
+          git diff --name-only --diff-filter=U > report/conflicts.txt
+          git diff --name-only --cached > report/staged.txt
+          cp /tmp/merge.log report/merge.log
+          mkdir -p report/conflict-files
+          while IFS= read -r f; do
+            [ -f "$f" ] || continue
+            mkdir -p "report/conflict-files/$(dirname "$f")"
+            cp "$f" "report/conflict-files/$f"
+          done < report/conflicts.txt
+          cat report/status.txt
+          cat report/conflicts.txt
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: upgrade-149-merge-diagnostic
+          path: report/
+          retention-days: 14
