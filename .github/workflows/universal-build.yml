@@ -228,3 +228,5 @@ jobs:
           fi
 
           gh release create "$AIPS_RELEASE_TAG"             "$ZIP"             "$SHA"             "$DMG"             "$DMGSHA"             --target "$GITHUB_SHA"             --title "Aips $AIPS_RELEASE_TAG"             --notes-file release-notes.md             --prerelease
+
+# Release validation trigger: v1.4.9-aips.1
