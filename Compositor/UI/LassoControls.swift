@@ -5,7 +5,7 @@ struct LassoControls: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Text(session.tool == .marquee ? "Marquee" : session.tool == .wand ? "Magic" : "Lasso").font(ToolHeaderStyle.titleFont)
+            Text(localized(session.tool == .marquee ? "Marquee" : session.tool == .wand ? "Magic" : "Lasso")).font(ToolHeaderStyle.titleFont)
             ScrollView(.horizontal) {
                 HStack(spacing: 12) {
                     if session.tool == .marquee {
@@ -13,7 +13,7 @@ struct LassoControls: View {
                             session.cancelLasso()
                             session.marqueeKind = kind
                         })) {
-                            ForEach(LassoKind.marqueeChoices, id: \.self) { Text($0.rawValue).tag($0) }
+                            ForEach(LassoKind.marqueeChoices, id: \.self) { Text(localized($0.rawValue)).tag($0) }
                         }
                         .pickerStyle(.segmented).labelsHidden().fixedSize()
                         .help("Press M to switch between Rectangle and Ellipse")
@@ -23,7 +23,7 @@ struct LassoControls: View {
                             session.cancelLasso()
                             session.wandMode = mode
                         })) {
-                            ForEach(WandMode.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                            ForEach(WandMode.allCases, id: \.self) { Text(localized($0.rawValue)).tag($0) }
                         }
                         .pickerStyle(.segmented).labelsHidden().fixedSize()
                         .help("Press Tab to switch between Wand and Object")
@@ -33,7 +33,7 @@ struct LassoControls: View {
                             session.cancelLasso()
                             session.lassoKind = kind
                         })) {
-                            ForEach(LassoKind.lassoChoices, id: \.self) { Text($0.rawValue).tag($0) }
+                            ForEach(LassoKind.lassoChoices, id: \.self) { Text(localized($0.rawValue)).tag($0) }
                         }
                         .pickerStyle(.segmented).labelsHidden().fixedSize()
                         .help("Press L to switch between Freehand and Polygonal")
@@ -41,7 +41,7 @@ struct LassoControls: View {
                     // Shows held Shift/Option (or an outline's mode) live; clicking sets the choice.
                     Picker("Mode", selection: Binding(get: { session.displayedSelectionMode },
                                                       set: { session.selectionModeChoice = $0 })) {
-                        ForEach(SelectionMode.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                        ForEach(SelectionMode.allCases, id: \.self) { Text(localized($0.rawValue)).tag($0) }
                     }
                                                       .pickerStyle(.segmented).labelsHidden().fixedSize()
                                                       .help("Hold Shift to add or Option to subtract for one outline")
