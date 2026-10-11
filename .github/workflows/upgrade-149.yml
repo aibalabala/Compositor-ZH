@@ -20,6 +20,7 @@ jobs:
       - name: Three-way merge and package conflicts
         shell: bash
         run: |
+          set +e
           set -uo pipefail
           git diff --binary base-145 target-149 > /tmp/upgrade.patch
           git apply --3way --index /tmp/upgrade.patch 2>&1 | tee /tmp/merge.log
