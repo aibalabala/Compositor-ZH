@@ -228,3 +228,5 @@ jobs:
           fi
 
           gh release create "$COMPOSITOR_ZH_RELEASE_TAG"             "$ZIP"             "$SHA"             "$DMG"             "$DMGSHA"             --target "$GITHUB_SHA"             --title "Compositor-ZH $COMPOSITOR_ZH_RELEASE_TAG"             --notes-file release-notes.md             --prerelease
+
+# Release Compositor-ZH 1.4.9-zh.2 after full rebrand
