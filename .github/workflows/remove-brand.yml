@@ -1,0 +1,17 @@
+name: Scan legacy brand references
+on:
+  push:
+    branches: ['cleanup/remove-aips-brand']
+    paths: ['.github/workflows/remove-brand.yml']
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List all legacy tokens
+        shell: bash
+        run: |
+          set -euo pipefail
+          git grep -n -i 'aips' -- ':!*.xcassets/**' || true
