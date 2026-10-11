@@ -13750,6 +13750,72 @@
           }
         }
       }
+    },
+    "This is not a valid Aips project, or its metadata is damaged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这不是有效的 Aips 项目，或项目元数据已损坏。"
+          }
+        }
+      }
+    },
+    "This Photoshop file uses a format version Aips can’t read.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 Photoshop 文件的格式版本超出 Aips 支持范围。"
+          }
+        }
+      }
+    },
+    "A new version of %@ is available!": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发现 %@ 的新版本！"
+          }
+        }
+      }
+    },
+    "%@ %@ is ready to install — you have %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@ 已可安装（当前版本：%@）。"
+          }
+        }
+      }
+    },
+    "%@ %@ is now available — you have %@. Would you like to download it now?": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@ 已发布（当前版本：%@）。是否立即下载？"
+          }
+        }
+      }
+    },
+    "What’s new": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更新内容"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
