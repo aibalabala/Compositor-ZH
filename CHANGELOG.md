@@ -2,16 +2,16 @@
 
 - Rename application and GitHub project to **Compositor-ZH**.
 - Rename `.app`, DMG and ZIP outputs, app-visible branding, Finder file type labels, and macOS build/test paths.
-- Retain the internal Swift module/scheme `Compositor`, bundle identifier `com.aibalabala.compositorzh`, and `.comp` identifiers for existing user data and project compatibility.
+- Retain the internal Swift module/scheme `Compositor` and legacy `.comp` project format. Use bundle identifier `com.aibalabala.compositorzh` for the renamed app.
 - Functional upstream base remains Compositor v1.4.9.
 
 # Changelog
 
-Compositor-ZH follows the upstream Compositor version and adds an Compositor-ZH revision suffix:
+Compositor-ZH follows the upstream Compositor version and adds a Compositor-ZH revision suffix:
 
-`<upstream-version>-compositor-zh.<revision>`
+`<upstream-version>-zh.<revision>`
 
-Example: `1.3.7-compositor-zh.1`.
+Example: `1.3.7-zh.1`.
 
 The macOS app's `CFBundleShortVersionString` remains the numeric upstream-compatible version (for example `1.3.7`). The Compositor-ZH revision is tracked by Git tags, `COMPOSITOR_ZH_VERSION`, release notes, and build metadata.
 
