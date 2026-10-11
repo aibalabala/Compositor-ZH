@@ -116,3 +116,5 @@ jobs:
             Aips-1.4.9-aips.1-macOS-universal2-adhoc.dmg
             Aips-1.4.9-aips.1-macOS-universal2-adhoc.dmg.sha256
           retention-days: 14
+
+# Final 1.4.9 candidate validation after localization fixes
