@@ -93,8 +93,8 @@ final class ProjectController {
         panel.allowedContentTypes = [format.type]
         panel.canCreateDirectories = true
         panel.isExtensionHidden = false
-        panel.title = "Export " + format.rawValue
-        panel.nameFieldStringValue = (session.projectURL?.deletingPathExtension().lastPathComponent ?? "Untitled")
+        panel.title = localized("Export As") + " " + format.rawValue
+        panel.nameFieldStringValue = (session.projectURL?.deletingPathExtension().lastPathComponent ?? localized("Untitled"))
             + "." + (format.type.preferredFilenameExtension ?? format.rawValue.lowercased())
         let response: NSApplication.ModalResponse
         if let window { response = await panel.beginSheetModal(for: window) }
