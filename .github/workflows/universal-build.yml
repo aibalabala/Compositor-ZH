@@ -1,4 +1,4 @@
-name: Aips Universal 2 Build
+name: Compositor-ZH Universal 2 Build
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
     runs-on: macos-26
     timeout-minutes: 60
     steps:
-      - name: Checkout Aips source
+      - name: Checkout Compositor-ZH source
         uses: actions/checkout@v4
 
       - name: Derive version
@@ -78,7 +78,7 @@ jobs:
           -scheme Compositor
           -onlyUsePackageVersionsFromResolvedFile
 
-      - name: Build Universal 2 Aips.app
+      - name: Build Universal 2 Compositor-ZH.app
         run: >
           xcodebuild
           -project Compositor.xcodeproj
@@ -97,7 +97,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          APP="DerivedData/Build/Products/Release/Aips.app"
+          APP="DerivedData/Build/Products/Release/Compositor-ZH.app"
 
           # Re-sign nested code deepest-first so every bundled framework/plugin
           # uses the same ad-hoc identity as the host app.
@@ -113,8 +113,8 @@ jobs:
       - name: Verify version and Universal 2 executable
         run: |
           set -euo pipefail
-          APP="DerivedData/Build/Products/Release/Aips.app"
-          BIN="$APP/Contents/MacOS/Aips"
+          APP="DerivedData/Build/Products/Release/Compositor-ZH.app"
+          BIN="$APP/Contents/MacOS/Compositor-ZH"
           PLIST="$APP/Contents/Info.plist"
 
           test -d "$APP"
@@ -144,7 +144,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          APP="DerivedData/Build/Products/Release/Aips.app"
+          APP="DerivedData/Build/Products/Release/Compositor-ZH.app"
           failed=0
 
           while IFS= read -r -d '' f; do
@@ -163,24 +163,24 @@ jobs:
 
       - name: Package Universal 2 app
         run: |
-          OUT="Aips-${AIPS_VERSION}-macOS-universal2-adhoc.zip"
-          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Aips.app             "$OUT"
-          shasum -a 256 "Aips-${AIPS_VERSION}-macOS-universal2-adhoc.zip"             > "Aips-${AIPS_VERSION}-macOS-universal2-adhoc.zip.sha256"
-          cat "Aips-${AIPS_VERSION}-macOS-universal2-adhoc.zip.sha256"
+          OUT="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip"
+          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             "$OUT"
+          shasum -a 256 "Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip"             > "Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip.sha256"
+          cat "Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip.sha256"
 
       - name: Build DMG installer
         shell: bash
         run: |
           set -euo pipefail
           STAGE="$RUNNER_TEMP/dmg-stage"
-          DMG="Aips-${AIPS_VERSION}-macOS-universal2-adhoc.dmg"
+          DMG="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.dmg"
 
           rm -rf "$STAGE"
           mkdir -p "$STAGE"
-          ditto DerivedData/Build/Products/Release/Aips.app "$STAGE/Aips.app"
+          ditto DerivedData/Build/Products/Release/Compositor-ZH.app "$STAGE/Compositor-ZH.app"
           ln -s /Applications "$STAGE/Applications"
 
-          hdiutil create             -volname "Aips ${AIPS_VERSION}"             -srcfolder "$STAGE"             -ov             -format UDZO             "$DMG"
+          hdiutil create             -volname "Compositor-ZH ${AIPS_VERSION}"             -srcfolder "$STAGE"             -ov             -format UDZO             "$DMG"
 
           hdiutil verify "$DMG"
           shasum -a 256 "$DMG" > "$DMG.sha256"
@@ -188,12 +188,12 @@ jobs:
       - name: Upload Universal 2 artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Aips-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc
+          name: Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc
           path: |
-            Aips-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.zip
-            Aips-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.zip.sha256
-            Aips-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.dmg
-            Aips-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.dmg.sha256
+            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.zip
+            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.zip.sha256
+            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.dmg
+            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.dmg.sha256
           retention-days: 14
 
       - name: Publish GitHub prerelease
@@ -203,13 +203,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ZIP="Aips-${AIPS_VERSION}-macOS-universal2-adhoc.zip"
+          ZIP="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip"
           SHA="${ZIP}.sha256"
-          DMG="Aips-${AIPS_VERSION}-macOS-universal2-adhoc.dmg"
+          DMG="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.dmg"
           DMGSHA="${DMG}.sha256"
 
           cat > release-notes.md <<EOF
-          ## Aips ${AIPS_VERSION}
+          ## Compositor-ZH ${AIPS_VERSION}
 
           Universal 2 build for macOS, containing both **arm64** and **x86_64** architectures.
 

@@ -1,4 +1,4 @@
-name: Aips Release Build
+name: Compositor-ZH Release Build
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
     runs-on: macos-26
     timeout-minutes: 60
     steps:
-      - name: Checkout Aips source
+      - name: Checkout Compositor-ZH source
         uses: actions/checkout@v4
 
       - name: Show runner
@@ -41,7 +41,7 @@ jobs:
           -scheme Compositor
           -onlyUsePackageVersionsFromResolvedFile
 
-      - name: Build Aips.app
+      - name: Build Compositor-ZH.app
         run: >
           xcodebuild
           -project Compositor.xcodeproj
@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          APP="DerivedData/Build/Products/Release/Aips.app"
+          APP="DerivedData/Build/Products/Release/Compositor-ZH.app"
 
           while IFS= read -r -d '' item; do
             /usr/bin/codesign --force --sign - "$item"
@@ -68,18 +68,18 @@ jobs:
 
       - name: Verify app
         run: |
-          APP_PATH="DerivedData/Build/Products/Release/Aips.app"
+          APP_PATH="DerivedData/Build/Products/Release/Compositor-ZH.app"
           test -d "$APP_PATH"
           /usr/bin/codesign --verify --deep --strict --verbose=2 "$APP_PATH"
-          /usr/bin/file "$APP_PATH/Contents/MacOS/Aips"
+          /usr/bin/file "$APP_PATH/Contents/MacOS/Compositor-ZH"
 
       - name: Package app
         run: |
-          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Aips.app             Aips-macOS26-arm64.zip
+          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             Compositor-ZH-macOS26-arm64.zip
 
       - name: Upload app artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Aips-macOS26-arm64
-          path: Aips-macOS26-arm64.zip
+          name: Compositor-ZH-macOS26-arm64
+          path: Compositor-ZH-macOS26-arm64.zip
           retention-days: 14

@@ -18,7 +18,7 @@ jobs:
       APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
 
     steps:
-      - name: Checkout Aips source
+      - name: Checkout Compositor-ZH source
         uses: actions/checkout@v4
 
       - name: Validate release secrets
@@ -97,11 +97,11 @@ jobs:
           echo "SIGNING_KEYCHAIN=$KEYCHAIN" >> "$GITHUB_ENV"
           echo "Developer ID identity found."
 
-      - name: Sign Aips.app
+      - name: Sign Compositor-ZH.app
         shell: bash
         run: |
           set -euo pipefail
-          APP="DerivedData/Build/Products/Release/Aips.app"
+          APP="DerivedData/Build/Products/Release/Compositor-ZH.app"
           test -d "$APP"
 
           # Sign nested code from deepest path to shallowest path.
@@ -118,7 +118,7 @@ jobs:
 
       - name: Prepare notarization archive
         run: |
-          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Aips.app             Aips-notarization.zip
+          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             Aips-notarization.zip
 
       - name: Submit to Apple notarization
         shell: bash
@@ -128,7 +128,7 @@ jobs:
 
       - name: Staple and validate notarization
         run: |
-          APP="DerivedData/Build/Products/Release/Aips.app"
+          APP="DerivedData/Build/Products/Release/Compositor-ZH.app"
           xcrun stapler staple "$APP"
           xcrun stapler validate "$APP"
           /usr/bin/codesign --verify --deep --strict --verbose=2 "$APP"
@@ -137,7 +137,7 @@ jobs:
       - name: Package notarized app
         run: |
           VERSION="${GITHUB_REF_NAME:-manual}"
-          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Aips.app             "Aips-${VERSION}-macOS-arm64.zip"
+          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             "Compositor-ZH-${VERSION}-macOS-arm64.zip"
 
       - name: Upload notarized artifact
         uses: actions/upload-artifact@v4
