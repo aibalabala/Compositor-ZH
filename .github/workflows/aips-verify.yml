@@ -81,7 +81,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: Aips-test-results
+          name: Compositor-ZH-test-results
           path: '*.xcresult'
           retention-days: 7
           if-no-files-found: ignore
