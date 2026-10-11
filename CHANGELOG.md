@@ -1,3 +1,10 @@
+## 1.4.9-zh.2 — 2026-10-11
+
+- Complete migration of all active application branding to Compositor-ZH.
+- Rename version metadata and build variables; use bundle identifier `com.aibalabala.compositorzh`.
+- Existing `.comp` file format stays unchanged; macOS preferences may not automatically migrate from the previous bundle identifier.
+- Keep the upstream application logic at Compositor v1.4.9.
+
 ## 1.4.9-zh.1 — 2026-10-11
 
 - Rename application and GitHub project to **Compositor-ZH**.
