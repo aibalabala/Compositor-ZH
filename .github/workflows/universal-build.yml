@@ -48,7 +48,7 @@ jobs:
             exit 1
           fi
 
-          APP_VERSION="${VERSION%%-aips.*}"
+          APP_VERSION="${VERSION%%-*}"
           if ! [[ "$APP_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "::error::Invalid Apple app version derived from $VERSION: $APP_VERSION"
             exit 1
