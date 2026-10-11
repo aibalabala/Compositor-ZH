@@ -28,7 +28,7 @@ enum LanguagePreference {
         guard save(language) else { return }
         let alert = NSAlert()
         alert.messageText = String(localized: "Language change saved")
-        alert.informativeText = String(localized: "Save your work, quit Aips, then open it again to apply the new language.")
+        alert.informativeText = String(localized: "Save your work, quit Compositor-ZH, then open it again to apply the new language.")
         alert.addButton(withTitle: String(localized: "OK"))
         alert.runModal()
     }
