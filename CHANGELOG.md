@@ -1,3 +1,10 @@
+## 1.4.9-zh.1 — 2026-10-11
+
+- Rename application and GitHub project to **Compositor-ZH**.
+- Rename `.app`, DMG and ZIP outputs, app-visible branding, Finder file type labels, and macOS build/test paths.
+- Retain the internal Swift module/scheme `Compositor`, bundle identifier `com.aibalabala.aips`, and `.comp` identifiers for existing user data and project compatibility.
+- Functional upstream base remains Compositor v1.4.9.
+
 # Changelog
 
 Aips follows the upstream Compositor version and adds an Aips revision suffix:
