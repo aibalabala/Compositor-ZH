@@ -18,7 +18,7 @@ nonisolated enum ImageImportError: LocalizedError {
         switch self {
         case .unreadable: localized("The image could not be read. It may be damaged or unavailable.")
         case .unsupported: localized("Choose a JPEG, PNG, HEIC, TIFF, WebP, or Photoshop (PSD) file.")
-        case .tooLarge: "This import exceeds the current \(DocumentLimits.documentBudgetMegapixels)-megapixel document budget or \(DocumentLimits.maxSide.formatted())-pixel side limit."
+        case .tooLarge: String(localized: "This import exceeds the current \(DocumentLimits.documentBudgetMegapixels)-megapixel document budget or \(DocumentLimits.maxSide.formatted())-pixel side limit.")
         }
     }
 }
