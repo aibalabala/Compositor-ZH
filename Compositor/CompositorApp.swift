@@ -13,7 +13,7 @@ struct CompositorApp: App {
     }
 
     var body: some Scene {
-        Window("Aips", id: "editor") {
+        Window("Compositor-ZH", id: "editor") {
             ProjectWorkspaceView(applicationDelegate: applicationDelegate).roundedControls()
         }
             .defaultSize(width: 1180, height: 780)
@@ -184,7 +184,7 @@ struct CompositorApp: App {
                     // ⌘H toggles the Move tool's transform controls instead of hiding the app, so Hide keeps its
                     // place in the app menu without the shortcut.
                     CommandGroup(replacing: .appVisibility) {
-                        Button("Hide Aips") { NSApp.hide(nil) }
+                        Button("Hide Compositor-ZH") { NSApp.hide(nil) }
                         Button("Hide Others") { NSApp.hideOtherApplications(nil) }
                             .configuredKeyboardShortcut("h", modifiers: [.command, .option])
                         Button("Show All") { NSApp.unhideAllApplications(nil) }
