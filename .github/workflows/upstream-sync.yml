@@ -6,7 +6,7 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/upstream-sync.yml'
-      - 'AIPS_VERSION'
+      - 'COMPOSITOR_ZH_VERSION'
       - 'UPSTREAM_VERSION'
   schedule:
     - cron: '17 3 * * 1'
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout Aips
+      - name: Checkout Compositor-ZH
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -30,12 +30,12 @@ jobs:
         run: |
           set -euo pipefail
           BASELINE="$(tr -d '[:space:]' < UPSTREAM_VERSION)"
-          AIPS_VERSION="$(tr -d '[:space:]' < AIPS_VERSION)"
+          COMPOSITOR_ZH_VERSION="$(tr -d '[:space:]' < COMPOSITOR_ZH_VERSION)"
           test -n "$BASELINE"
-          test -n "$AIPS_VERSION"
+          test -n "$COMPOSITOR_ZH_VERSION"
           echo "BASELINE=$BASELINE" >> "$GITHUB_ENV"
-          echo "AIPS_VERSION=$AIPS_VERSION" >> "$GITHUB_ENV"
-          echo "Current Aips: $AIPS_VERSION"
+          echo "COMPOSITOR_ZH_VERSION=$COMPOSITOR_ZH_VERSION" >> "$GITHUB_ENV"
+          echo "Current Compositor-ZH: $COMPOSITOR_ZH_VERSION"
           echo "Current upstream baseline: $BASELINE"
 
       - name: Fetch latest upstream release
@@ -69,28 +69,28 @@ jobs:
           mkdir -p upstream-report
 
           git diff --name-only "$BASE_REF" "$LATEST_REF" | sort -u > upstream-report/upstream-changed.txt
-          git diff --name-only "$BASE_REF" HEAD | sort -u > upstream-report/aips-changed.txt
-          comm -12 upstream-report/upstream-changed.txt upstream-report/aips-changed.txt > upstream-report/potential-conflicts.txt
+          git diff --name-only "$BASE_REF" HEAD | sort -u > upstream-report/compositor-zh-changed.txt
+          comm -12 upstream-report/upstream-changed.txt upstream-report/compositor-zh-changed.txt > upstream-report/potential-conflicts.txt
 
           UPSTREAM_COUNT="$(wc -l < upstream-report/upstream-changed.txt | tr -d ' ')"
-          AIPS_COUNT="$(wc -l < upstream-report/aips-changed.txt | tr -d ' ')"
+          COMPOSITOR_ZH_COUNT="$(wc -l < upstream-report/compositor-zh-changed.txt | tr -d ' ')"
           CONFLICT_COUNT="$(wc -l < upstream-report/potential-conflicts.txt | tr -d ' ')"
 
           {
-            echo "# Aips upstream synchronization report"
+            echo "# Compositor-ZH upstream synchronization report"
             echo
-            echo "- Aips version: `$AIPS_VERSION`"
+            echo "- Compositor-ZH version: `$COMPOSITOR_ZH_VERSION`"
             echo "- Current upstream baseline: `$BASELINE`"
             echo "- Latest upstream release: `$LATEST`"
             echo "- Upstream-changed files: **$UPSTREAM_COUNT**"
-            echo "- Aips-modified files vs baseline: **$AIPS_COUNT**"
+            echo "- Compositor-ZH-modified files vs baseline: **$COMPOSITOR_ZH_COUNT**"
             echo "- Potential conflict files: **$CONFLICT_COUNT**"
             echo
 
             if [ "$BASELINE" = "$LATEST" ]; then
               echo "## Status"
               echo
-              echo "Aips is already based on the latest upstream release."
+              echo "Compositor-ZH is already based on the latest upstream release."
             else
               echo "## Potential conflicts"
               echo
@@ -106,9 +106,9 @@ jobs:
               sed 's/^/- `/; s/$/`/' upstream-report/upstream-changed.txt
 
               echo
-              echo "## Aips files changed relative to baseline"
+              echo "## Compositor-ZH files changed relative to baseline"
               echo
-              sed 's/^/- `/; s/$/`/' upstream-report/aips-changed.txt
+              sed 's/^/- `/; s/$/`/' upstream-report/compositor-zh-changed.txt
             fi
 
             echo
