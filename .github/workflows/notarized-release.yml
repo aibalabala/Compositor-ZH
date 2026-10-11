@@ -1,4 +1,4 @@
-name: Aips Signed & Notarized Release
+name: Compositor-ZH Signed & Notarized Release
 
 on:
   workflow_dispatch:
@@ -71,7 +71,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          KEYCHAIN="$RUNNER_TEMP/aips-signing.keychain-db"
+          KEYCHAIN="$RUNNER_TEMP/compositor-zh-signing.keychain-db"
           CERT_PATH="$RUNNER_TEMP/developer-id.p12"
           KEYCHAIN_PASSWORD="$(openssl rand -hex 24)"
 
@@ -118,13 +118,13 @@ jobs:
 
       - name: Prepare notarization archive
         run: |
-          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             Aips-notarization.zip
+          ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             Compositor-ZH-notarization.zip
 
       - name: Submit to Apple notarization
         shell: bash
         run: |
           set -euo pipefail
-          xcrun notarytool submit Aips-notarization.zip             --apple-id "$APPLE_ID"             --team-id "$APPLE_TEAM_ID"             --password "$APPLE_APP_PASSWORD"             --wait
+          xcrun notarytool submit Compositor-ZH-notarization.zip             --apple-id "$APPLE_ID"             --team-id "$APPLE_TEAM_ID"             --password "$APPLE_APP_PASSWORD"             --wait
 
       - name: Staple and validate notarization
         run: |
@@ -142,8 +142,8 @@ jobs:
       - name: Upload notarized artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Aips-notarized-macOS-arm64
-          path: Aips-*-macOS-arm64.zip
+          name: Compositor-ZH-notarized-macOS-arm64
+          path: Compositor-ZH-*-macOS-arm64.zip
           retention-days: 30
 
       - name: Publish GitHub Release
@@ -151,7 +151,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME"             Aips-*-macOS-arm64.zip             --title "Aips $GITHUB_REF_NAME"             --generate-notes
+          gh release create "$GITHUB_REF_NAME"             Compositor-ZH-*-macOS-arm64.zip             --title "Compositor-ZH $GITHUB_REF_NAME"             --generate-notes
 
       - name: Remove temporary keychain
         if: always()

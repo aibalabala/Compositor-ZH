@@ -9,7 +9,7 @@ on:
       - 'CompositorUITests/**'
       - 'Compositor.xcodeproj/**'
       - 'Config/**'
-      - '.github/workflows/aips-verify.yml'
+      - '.github/workflows/compositor-zh-verify.yml'
   workflow_dispatch:
 
 permissions:

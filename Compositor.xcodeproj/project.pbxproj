@@ -431,7 +431,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.4.9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aibalabala.aips;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aibalabala.compositorzh;
 				PRODUCT_NAME = "Compositor-ZH";
 				PRODUCT_MODULE_NAME = Compositor;
 				REGISTER_APP_GROUPS = YES;
@@ -471,7 +471,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.4.9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aibalabala.aips;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aibalabala.compositorzh;
 				PRODUCT_NAME = "Compositor-ZH";
 				PRODUCT_MODULE_NAME = Compositor;
 				REGISTER_APP_GROUPS = YES;

@@ -41,7 +41,7 @@ jobs:
             VERSION="0.0.${GITHUB_RUN_NUMBER}"
           fi
 
-          echo "AIPS_RELEASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
+          echo "COMPOSITOR_ZH_RELEASE_TAG=$RELEASE_TAG" >> "$GITHUB_ENV"
 
           if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?([.-][0-9A-Za-z.-]+)?$ ]]; then
             echo "::error::Unsupported version derived from ref: $VERSION"
@@ -54,9 +54,9 @@ jobs:
             exit 1
           fi
 
-          echo "AIPS_VERSION=$VERSION" >> "$GITHUB_ENV"
-          echo "AIPS_APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
-          echo "AIPS_BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> "$GITHUB_ENV"
+          echo "COMPOSITOR_ZH_VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "COMPOSITOR_ZH_APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
+          echo "COMPOSITOR_ZH_BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> "$GITHUB_ENV"
           echo "Version: $VERSION"
           echo "Build: $GITHUB_RUN_NUMBER"
 
@@ -88,8 +88,8 @@ jobs:
           -derivedDataPath DerivedData
           ARCHS='arm64 x86_64'
           ONLY_ACTIVE_ARCH=NO
-          MARKETING_VERSION="$AIPS_APP_VERSION"
-          CURRENT_PROJECT_VERSION="$AIPS_BUILD_NUMBER"
+          MARKETING_VERSION="$COMPOSITOR_ZH_APP_VERSION"
+          CURRENT_PROJECT_VERSION="$COMPOSITOR_ZH_BUILD_NUMBER"
           CODE_SIGN_IDENTITY=-
           build
 
@@ -127,8 +127,8 @@ jobs:
           echo "CFBundleShortVersionString=$SHORT_VERSION"
           echo "CFBundleVersion=$BUILD_VERSION"
 
-          test "$SHORT_VERSION" = "$AIPS_APP_VERSION"
-          test "$BUILD_VERSION" = "$AIPS_BUILD_NUMBER"
+          test "$SHORT_VERSION" = "$COMPOSITOR_ZH_APP_VERSION"
+          test "$BUILD_VERSION" = "$COMPOSITOR_ZH_BUILD_NUMBER"
 
           file "$BIN"
           lipo -info "$BIN"
@@ -163,24 +163,24 @@ jobs:
 
       - name: Package Universal 2 app
         run: |
-          OUT="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip"
+          OUT="Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.zip"
           ditto -c -k --sequesterRsrc --keepParent             DerivedData/Build/Products/Release/Compositor-ZH.app             "$OUT"
-          shasum -a 256 "Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip"             > "Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip.sha256"
-          cat "Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip.sha256"
+          shasum -a 256 "Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.zip"             > "Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.zip.sha256"
+          cat "Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.zip.sha256"
 
       - name: Build DMG installer
         shell: bash
         run: |
           set -euo pipefail
           STAGE="$RUNNER_TEMP/dmg-stage"
-          DMG="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.dmg"
+          DMG="Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.dmg"
 
           rm -rf "$STAGE"
           mkdir -p "$STAGE"
           ditto DerivedData/Build/Products/Release/Compositor-ZH.app "$STAGE/Compositor-ZH.app"
           ln -s /Applications "$STAGE/Applications"
 
-          hdiutil create             -volname "Compositor-ZH ${AIPS_VERSION}"             -srcfolder "$STAGE"             -ov             -format UDZO             "$DMG"
+          hdiutil create             -volname "Compositor-ZH ${COMPOSITOR_ZH_VERSION}"             -srcfolder "$STAGE"             -ov             -format UDZO             "$DMG"
 
           hdiutil verify "$DMG"
           shasum -a 256 "$DMG" > "$DMG.sha256"
@@ -188,28 +188,28 @@ jobs:
       - name: Upload Universal 2 artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc
+          name: Compositor-ZH-${{ env.COMPOSITOR_ZH_VERSION }}-macOS-universal2-adhoc
           path: |
-            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.zip
-            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.zip.sha256
-            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.dmg
-            Compositor-ZH-${{ env.AIPS_VERSION }}-macOS-universal2-adhoc.dmg.sha256
+            Compositor-ZH-${{ env.COMPOSITOR_ZH_VERSION }}-macOS-universal2-adhoc.zip
+            Compositor-ZH-${{ env.COMPOSITOR_ZH_VERSION }}-macOS-universal2-adhoc.zip.sha256
+            Compositor-ZH-${{ env.COMPOSITOR_ZH_VERSION }}-macOS-universal2-adhoc.dmg
+            Compositor-ZH-${{ env.COMPOSITOR_ZH_VERSION }}-macOS-universal2-adhoc.dmg.sha256
           retention-days: 14
 
       - name: Publish GitHub prerelease
-        if: env.AIPS_RELEASE_TAG != ''
+        if: env.COMPOSITOR_ZH_RELEASE_TAG != ''
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          ZIP="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.zip"
+          ZIP="Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.zip"
           SHA="${ZIP}.sha256"
-          DMG="Compositor-ZH-${AIPS_VERSION}-macOS-universal2-adhoc.dmg"
+          DMG="Compositor-ZH-${COMPOSITOR_ZH_VERSION}-macOS-universal2-adhoc.dmg"
           DMGSHA="${DMG}.sha256"
 
           cat > release-notes.md <<EOF
-          ## Compositor-ZH ${AIPS_VERSION}
+          ## Compositor-ZH ${COMPOSITOR_ZH_VERSION}
 
           Universal 2 build for macOS, containing both **arm64** and **x86_64** architectures.
 
@@ -222,9 +222,9 @@ jobs:
           - ${DMGSHA}
           EOF
 
-          if gh release view "$AIPS_RELEASE_TAG" >/dev/null 2>&1; then
-            echo "::error::Release $AIPS_RELEASE_TAG already exists."
+          if gh release view "$COMPOSITOR_ZH_RELEASE_TAG" >/dev/null 2>&1; then
+            echo "::error::Release $COMPOSITOR_ZH_RELEASE_TAG already exists."
             exit 1
           fi
 
-          gh release create "$AIPS_RELEASE_TAG"             "$ZIP"             "$SHA"             "$DMG"             "$DMGSHA"             --target "$GITHUB_SHA"             --title "Aips $AIPS_RELEASE_TAG"             --notes-file release-notes.md             --prerelease
+          gh release create "$COMPOSITOR_ZH_RELEASE_TAG"             "$ZIP"             "$SHA"             "$DMG"             "$DMGSHA"             --target "$GITHUB_SHA"             --title "Compositor-ZH $COMPOSITOR_ZH_RELEASE_TAG"             --notes-file release-notes.md             --prerelease

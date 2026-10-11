@@ -8,7 +8,6 @@
 - **变更记录：** [CHANGELOG.md](CHANGELOG.md)
 - **上游同步规则：** [UPSTREAM_SYNC.md](UPSTREAM_SYNC.md)
 - **新版安装包：** [Compositor-ZH 1.4.9-zh.1 DMG](https://github.com/aibalabala/Compositor-ZH/releases/download/v1.4.9-zh.1/Compositor-ZH-1.4.9-zh.1-macOS-universal2-adhoc.dmg)
-- **历史安装包（Aips 旧名称）：** [Aips 1.4.9-aips.1 Universal 2 DMG](https://github.com/aibalabala/Compositor-ZH/releases/download/v1.4.9-aips.1/Aips-1.4.9-aips.1-macOS-universal2-adhoc.dmg)
 
 > Original project: **Compositor** by Robbie Tilton. This is an independent community localization fork, not an official Compositor release. The original MIT License and attribution are retained.
 

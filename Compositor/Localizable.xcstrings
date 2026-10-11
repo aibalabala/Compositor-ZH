@@ -694,17 +694,6 @@
         }
       }
     },
-    "Aips will convert these Photoshop features. Nothing is applied until you continue.": {
-      "extractionState": "manual",
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aips 将转换这些 Photoshop 特性，继续之前不会应用任何更改。"
-          }
-        }
-      }
-    },
     "Align %@": {
       "extractionState": "manual",
       "localizations": {
@@ -5519,17 +5508,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "在预览中隐藏%@"
-          }
-        }
-      }
-    },
-    "Hide Aips": {
-      "extractionState": "manual",
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "隐藏 Aips"
           }
         }
       }
@@ -13751,28 +13729,6 @@
         }
       }
     },
-    "This is not a valid Aips project, or its metadata is damaged.": {
-      "extractionState": "manual",
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "这不是有效的 Aips 项目，或项目元数据已损坏。"
-          }
-        }
-      }
-    },
-    "This Photoshop file uses a format version Aips can’t read.": {
-      "extractionState": "manual",
-      "localizations": {
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此 Photoshop 文件的格式版本超出 Aips 支持范围。"
-          }
-        }
-      }
-    },
     "A new version of %@ is available!": {
       "extractionState": "manual",
       "localizations": {
@@ -13890,6 +13846,50 @@
           "stringUnit": {
             "state": "translated",
             "value": "按当前 DPI 计算，尺寸不能超过 %@ 像素。"
+          }
+        }
+      }
+    },
+    "Compositor-ZH will convert these Photoshop features. Nothing is applied until you continue.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compositor-ZH 将转换这些 Photoshop 特性，继续之前不会应用任何更改。"
+          }
+        }
+      }
+    },
+    "Hide Compositor-ZH": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐藏 Compositor-ZH"
+          }
+        }
+      }
+    },
+    "This is not a valid Compositor-ZH project, or its metadata is damaged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这不是有效的 Compositor-ZH 项目，或项目元数据已损坏。"
+          }
+        }
+      }
+    },
+    "This Photoshop file uses a format version Compositor-ZH can’t read.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 Photoshop 文件的格式版本超出 Compositor-ZH 支持范围。"
           }
         }
       }
