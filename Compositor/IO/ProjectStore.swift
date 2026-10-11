@@ -7,7 +7,7 @@ extension UTType {
     static let compositorProject = UTType(exportedAs: "com.compositor.project", conformingTo: .package)
     nonisolated static let photoshopImage = UTType(importedAs: "com.adobe.photoshop-image")
     nonisolated static let photoshopLargeImage = UTType(importedAs: "com.adobe.photoshop-large-image")
-    static let importableImages: [UTType] = [.jpeg, .png, .heic, .tiff, .photoshopImage, .photoshopLargeImage, .rawImage, .svg]
+    static let importableImages: [UTType] = [.jpeg, .png, .heic, .tiff, .webP, .photoshopImage, .photoshopLargeImage, .rawImage, .svg]
 }
 
 nonisolated struct ProjectManifest: Codable, Sendable {
@@ -65,7 +65,7 @@ nonisolated enum ProjectError: LocalizedError {
     case invalid, version(Int), missingImage, tooLarge, encode
     var errorDescription: String? {
         switch self {
-        case .invalid: localized("This is not a valid Compositor project, or its metadata is damaged.")
+        case .invalid: localized("This is not a valid Aips project, or its metadata is damaged.")
         case .version(let version): String(localized: "This project uses format version \(version). This app supports versions \(ProjectManifest.supported.lowerBound)–\(ProjectManifest.supported.upperBound).")
         case .missingImage: localized("An image inside the project is missing or damaged. The current document has not been replaced.")
         case .tooLarge: String(localized: "This project exceeds the supported canvas, layer, file-size, or \(DocumentLimits.documentBudgetMegapixels)-megapixel document limit.")

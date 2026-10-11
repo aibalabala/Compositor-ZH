@@ -8,6 +8,19 @@ Example: `1.3.7-aips.1`.
 
 The macOS app's `CFBundleShortVersionString` remains the numeric upstream-compatible version (for example `1.3.7`). The Aips revision is tracked by Git tags, `AIPS_VERSION`, release notes, and build metadata.
 
+## 1.4.9-aips.1 — 2026-10-11
+
+Base: Compositor v1.4.9.
+
+### Upstream changes
+- Synced v1.4.6 through v1.4.9: command search, Canvas Only, configurable DPI and canvas backgrounds, 90-degree rotation, repeat last filter, enhanced Export As (PNG/JPEG/PDF), Navigator, WebP import, Scanlines filter and Camera Raw performance/color updates.
+- Preserved compatibility with existing .comp files and Aips module / bundle configuration.
+
+### Aips localization
+- Added Simplified Chinese translations for new upstream UI strings, updated Aips document display names and localized the update alert.
+- Kept existing Simplified Chinese resources and language-switching UI.
+- Retained ad-hoc re-signing for embedded frameworks and Universal 2 DMG packaging.
+
 ## 1.4.5-aips.1 — 2026-10-02
 
 Base: Compositor v1.4.5.
