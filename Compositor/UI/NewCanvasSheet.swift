@@ -101,7 +101,7 @@ struct NewCanvasSheet: View {
                             Text("Custom").tag(CanvasPreset?.none)
                             ForEach(CanvasPreset.groups.indices, id: \.self) { group in
                                 Divider()
-                                ForEach(CanvasPreset.groups[group]) { Text($0.title).tag(CanvasPreset?.some($0)) }
+                                ForEach(CanvasPreset.groups[group]) { Text(localized($0.title)).tag(CanvasPreset?.some($0)) }
                             }
                         }
                         .pickerStyle(.inline).labelsHidden()
@@ -128,12 +128,12 @@ struct NewCanvasSheet: View {
             }
             // The settings are pills, each changed the same way: click to step to the next choice.
             HStack(spacing: 4) {
-                CyclePill(background.title, help: "Start see-through, or with a white or black Background layer. Click to switch.") {
+                CyclePill(localized(background.title), help: localized("Start see-through, or with a white or black Background layer. Click to switch.")) {
                     background = background.next
                 }
                 .accessibilityIdentifier("canvasBackground")
                 Text("·")
-                CyclePill(unit.name, help: "Units: pixels, inches, centimeters or millimeters. Click to switch.") {
+                CyclePill(localized(unit.name), help: localized("Units: pixels, inches, centimeters or millimeters. Click to switch.")) {
                     switchUnit(to: unit.next)
                 }
                 .accessibilityIdentifier("canvasUnit")
@@ -223,14 +223,14 @@ private struct CyclePill: View {
     init(_ title: String, help: String, action: @escaping () -> Void) { self.title = title; self.help = help; self.action = action }
     var body: some View {
         Button(action: action) {
-            Text(title).foregroundStyle(.secondary).monospacedDigit()
+            Text(localized(title)).foregroundStyle(.secondary).monospacedDigit()
                 .padding(.horizontal, 6).padding(.vertical, 2)
                 .background(.quaternary.opacity(hovering ? 1 : 0), in: Capsule())
                 .contentShape(Capsule())
         }
         .buttonStyle(.plain)
         .onHover { hovering = $0 }
-        .help(help)
+        .help(localized(help))
     }
 }
 
