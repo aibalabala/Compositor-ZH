@@ -1,0 +1,26 @@
+name: Upgrade v1.4.9 Chinese Audit
+on:
+  push:
+    branches: ['upgrade/v1.4.9-aips.1']
+    paths: ['.github/workflows/upgrade-149-l10n.yml', 'Compositor/Localizable.xcstrings']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch upstream comparison
+        run: |
+          set -euo pipefail
+          git remote add upstream https://github.com/robbietilton/Compositor.git
+          git fetch --no-tags upstream refs/tags/v1.4.5:refs/tags/base-145 refs/tags/v1.4.9:refs/tags/target-149
+      - name: Scan Chinese coverage
+        run: |
+          python3 scripts/localization_audit.py --base-ref base-145 --latest-ref target-149 --output upgrade-149-localization.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: upgrade-149-localization
+          path: upgrade-149-localization.md
