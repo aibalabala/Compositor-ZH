@@ -6,8 +6,8 @@ Compositor-ZH is a localization fork of [robbietilton/Compositor](https://github
 
 - `UPSTREAM_VERSION`: exact Compositor tag currently used as the Compositor-ZH baseline.
 - `COMPOSITOR_ZH_VERSION`: Compositor-ZH release identifier.
-- Compositor-ZH release format: `<Compositor version>-compositor-zh.<revision>`.
-- Example: upstream `v1.3.7` → Compositor-ZH `1.3.7-compositor-zh.1`.
+- Compositor-ZH release format: `<Compositor version>-zh.<revision>`.
+- Example: upstream `v1.3.7` → Compositor-ZH `1.3.7-zh.1`.
 
 Compositor-ZH should not silently advance its upstream baseline. Updating `UPSTREAM_VERSION` is an explicit maintenance decision after merge conflicts, localization changes, tests, and builds have been reviewed.
 
@@ -24,7 +24,7 @@ When a newer Compositor release appears:
 7. Run Verify, ARM64 Release, and Universal 2 CI.
 8. Update `UPSTREAM_VERSION`.
 9. Update `COMPOSITOR_ZH_VERSION` and `CHANGELOG.md`.
-10. Publish an Compositor-ZH prerelease/release.
+10. Publish a Compositor-ZH prerelease/release.
 
 ## Conflict policy
 
